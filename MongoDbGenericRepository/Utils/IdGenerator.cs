@@ -23,10 +23,12 @@ namespace MongoDbGenericRepository.Utils
                 case "Guid":
                     return (TKey)(object)Guid.NewGuid();
                 case "Int16":
-                    return (TKey)(object)Random.Next(1, short.MaxValue);
+                case "short":
+                    return (TKey)(object)Convert.ToInt16(Random.Next(1, short.MaxValue));
                 case "Int32":
                     return (TKey)(object)Random.Next(1, int.MaxValue);
                 case "Int64":
+                case "long":
                     return (TKey)(object)(Random.NextLong(1, long.MaxValue));
                 case "String":
                     return (TKey)(object)Guid.NewGuid().ToString();

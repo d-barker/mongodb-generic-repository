@@ -9,6 +9,19 @@ Covered by 400+ integration tests and counting.
 
 The MongoDbGenericRepository is also used in [AspNetCore.Identity.MongoDbCore](https://github.com/alexandre-spieser/AspNetCore.Identity.MongoDbCore).
 
+### Running the unit tests locally
+The unit tests require a local mongodb running. To override the connection string (without saving any credentials) create an appsettings.Local.json file and override the connection string and the database name. The following example uses a user name and password, if your database is not protected (not recommended) then you can omit this.
+
+``` json
+{
+  "ConnectionStrings": {
+    "MongoDbTests": "mongodb://[userName]:[password]@localhost:27017/?authSource=admin&readPreference=primary&ssl=false"
+  },
+  "DatabaseName" : "MongoDbTests"
+}
+
+```
+
 # Support This Project
 
 If you have found this project helpful, either as a library that you use or as a learning tool, please consider buying Alex a coffee: <a href="https://www.buymeacoffee.com/zeitquest" target="_blank"><img height="40px" src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" style="max-height: 51px;width: 150px !important;" ></a>
@@ -23,7 +36,7 @@ You can override this behaviour to enforce legacy behaviour in your app Startup 
 
 # Usage examples
 
-This repository is meant to be inherited from. 
+This repository is meant to be inherited from.
 
 You are responsible for managing its lifetime, it is advised to setup this repository as a singleton.
 
@@ -35,7 +48,7 @@ Here is an example of repository usage, where the TestRepository is implementing
         void DropTestCollection<TDocument>();
         void DropTestCollection<TDocument>(string partitionKey);
     }
-    
+
     public class TestRepository : BaseMongoRepository, ITestRepository
     {
         public TestRepository(string connectionString, string databaseName) : base(connectionString, databaseName)
@@ -109,7 +122,7 @@ The `IDocument` and `IDocument<TKey>` interfaces can be seen below:
         Guid Id { get; set; }
         int Version { get; set; }
     }
-    
+
     /// <summary>
     /// This class represents a basic document that can be stored in MongoDb.
     /// Your document must implement this class in order for the MongoDbRepository to handle them.
@@ -117,7 +130,7 @@ The `IDocument` and `IDocument<TKey>` interfaces can be seen below:
     public interface IDocument<TKey> where TKey : IEquatable<TKey>
     {
         /// <summary>
-        /// The Primary Key, which must be decorated with the [BsonId] attribute 
+        /// The Primary Key, which must be decorated with the [BsonId] attribute
         /// if you want the MongoDb C# driver to consider it to be the document ID.
         /// </summary>
         [BsonId]
@@ -171,7 +184,7 @@ It is now possible to change the collection name by using the `CollectionName` a
 Documents of this type will be inserted into a collection named "MyCollectionName".
 
 ## Index Management
-From version 1.3.8 the `MongoDbGenericRepository` implements the `IBaseMongoRepository_Index` and  `IBaseMongoRepository_Index<TKey>` interfaces. 
+From version 1.3.8 the `MongoDbGenericRepository` implements the `IBaseMongoRepository_Index` and  `IBaseMongoRepository_Index<TKey>` interfaces.
 This exposes the functionality to programmatically manage indexes against your collections in a generic fashion.
 
 The following methods are exposed and fully integration tested:
@@ -183,7 +196,7 @@ The following methods are exposed and fully integration tested:
 + DropIndexAsync
 + GetIndexesNamesAsync
 
-Usage examples:  
+Usage examples:
 ```csharp
 	string expectedIndexName = $"myCustomIndexName";
 	var option = new IndexCreationOptions

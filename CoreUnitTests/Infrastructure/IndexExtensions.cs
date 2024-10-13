@@ -59,9 +59,9 @@ public static class IndexExtensions
 
     private static string RenderIndexModelKeys<TDocument>(IndexKeysDefinition<TDocument> keys)
     {
-        var indexModelRendered = keys.Render(
+        var indexModelRendered = keys.Render(new RenderArgs<TDocument>(
             BsonSerializer.SerializerRegistry.GetSerializer<TDocument>(),
-            BsonSerializer.SerializerRegistry);
+            BsonSerializer.SerializerRegistry));
 
         var result = indexModelRendered.ToString();
         return result.Replace(" ", "");

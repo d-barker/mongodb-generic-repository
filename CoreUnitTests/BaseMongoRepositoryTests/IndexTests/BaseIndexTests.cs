@@ -9,7 +9,7 @@ namespace CoreUnitTests.BaseMongoRepositoryTests.IndexTests;
 
 public class BaseIndexTests : TestMongoRepositoryContext
 {
-    protected Mock<IAsyncCursor<BsonDocument>> SetupIndex<TDocument>(BsonDocument index, Mock<IMongoCollection<TDocument>> collection)
+    protected static Mock<IAsyncCursor<BsonDocument>> SetupIndex<TDocument>(BsonDocument index, Mock<IMongoCollection<TDocument>> collection)
     {
         var asyncCursor = new Mock<IAsyncCursor<BsonDocument>>();
         asyncCursor

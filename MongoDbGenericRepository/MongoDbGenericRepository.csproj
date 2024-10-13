@@ -1,21 +1,23 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>net472;netstandard2.0;</TargetFrameworks>
-	<GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <TargetFrameworks>net6.0;net8.0;netstandard2.0;</TargetFrameworks>
+    <LangVersion>latest</LangVersion>
+    <Nullable>disable</Nullable>
+	  <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <PackageId>MongoDbGenericRepository</PackageId>
-    <PackageVersion>1.6.0</PackageVersion>
+    <PackageVersion>2.29.0</PackageVersion>
     <Authors>Alexandre Spieser</Authors>
+
     <PackageTitle>MongoDb Generic Repository</PackageTitle>
-    <Description>A generic repository implementation using the MongoDB C# Sharp 2.0 driver.</Description>
-    <PackageLicenseUrl>http://www.opensource.org/licenses/mit-license.php</PackageLicenseUrl>
-    <PackageProjectUrl>http://www.opensource.org/licenses/mit-license.php</PackageProjectUrl>
+    <Description>A generic repository implementation using the MongoDB C# Standard 2.0 driver.</Description>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <PackageReleaseNotes>Release notes are at https://github.com/alexandre-spieser/mongodb-generic-repository/releases </PackageReleaseNotes>
     <Copyright>Copyright 2023 (c) Alexandre Spieser. All rights reserved.</Copyright>
     <PackageTags>MongoDb Repository Generic NoSql</PackageTags>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>1.6.0</Version>
+    <Version>2.29.0</Version>
     <RepositoryUrl>https://github.com/alexandre-spieser/mongodb-generic-repository</RepositoryUrl>
     <RepositoryType>Git</RepositoryType>
   </PropertyGroup>
@@ -25,7 +27,7 @@
 	</PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="MongoDB.Driver" Version="2.25.0" />
+    <PackageReference Include="MongoDB.Driver" Version="2.29.0" />
   </ItemGroup>
 
 </Project>
