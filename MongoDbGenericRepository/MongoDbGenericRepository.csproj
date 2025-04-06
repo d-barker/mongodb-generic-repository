@@ -1,12 +1,12 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>net6.0;net8.0;netstandard2.0;</TargetFrameworks>
+    <TargetFrameworks>net9.0;net8.0;netstandard2.0;</TargetFrameworks>
     <LangVersion>latest</LangVersion>
     <Nullable>disable</Nullable>
 	  <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <PackageId>MongoDbGenericRepository</PackageId>
-    <PackageVersion>2.29.0</PackageVersion>
+    <PackageVersion>3.3.0</PackageVersion>
     <Authors>Alexandre Spieser</Authors>
 
     <PackageTitle>MongoDb Generic Repository</PackageTitle>
@@ -17,7 +17,7 @@
     <Copyright>Copyright 2023 (c) Alexandre Spieser. All rights reserved.</Copyright>
     <PackageTags>MongoDb Repository Generic NoSql</PackageTags>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>2.29.0</Version>
+    <Version>3.3.0</Version>
     <RepositoryUrl>https://github.com/alexandre-spieser/mongodb-generic-repository</RepositoryUrl>
     <RepositoryType>Git</RepositoryType>
   </PropertyGroup>
@@ -27,7 +27,7 @@
 	</PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="MongoDB.Driver" Version="2.29.0" />
+    <PackageReference Include="MongoDB.Driver" Version="3.3.0" />
   </ItemGroup>
 
 </Project>

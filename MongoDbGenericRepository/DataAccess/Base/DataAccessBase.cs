@@ -2,6 +2,7 @@
 using MongoDB.Driver.Linq;
 using MongoDbGenericRepository.Models;
 using System;
+using System.Linq;
 using System.Linq.Expressions;
 
 namespace MongoDbGenericRepository.DataAccess.Base
@@ -35,7 +36,7 @@ namespace MongoDbGenericRepository.DataAccess.Base
         /// <param name="filter">The filter definition.</param>
         /// <param name="partitionKey">The collection partition key.</param>
         /// <returns></returns>
-        public virtual IMongoQueryable<TDocument> GetQuery<TDocument, TKey>(Expression<Func<TDocument, bool>> filter, string partitionKey = null)
+        public virtual IQueryable<TDocument> GetQuery<TDocument, TKey>(Expression<Func<TDocument, bool>> filter, string partitionKey = null)
             where TDocument : IDocument<TKey>
             where TKey : IEquatable<TKey>
         {

@@ -97,8 +97,7 @@ namespace MongoDbGenericRepository
             // GuidRepresentation and GuidRepresentationMode will be removed in the next major release of the MongoDB Driver.
             // We can safely replace this with RepositorySerializationProvider.Instance.RegisterSerializer once we upgrade to the next major release.
 #pragma warning disable CS0618
-            BsonDefaults.GuidRepresentationMode = GuidRepresentationMode.V3;
-            RepositorySerializationProvider.Instance.RegisterSerializer(new GuidSerializer(guidRepresentation));
+            RepositorySerializationProvider.Instance.RegisterSerializer(new GuidSerializer(GuidRepresentation.Standard));
 #pragma warning restore CS0618
         }
 

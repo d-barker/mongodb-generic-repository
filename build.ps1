@@ -7,13 +7,13 @@ param(
     [switch]$interactive
 )
 
-$name = "AspNetCore.Identity.MongoDbCore"
+$name = "MongoDbGenericRepository"
 $project = "./MongoDBGenericRepository/MongoDBGenericRepository.csproj"
 
 Write-Output "Checking if GitVersion is installed..."
 
-$exists = Get-Command gitversion
-$exists2 = Get-Command dotnet-gitversion
+$exists = Get-Command gitversion -ErrorAction Ignore
+$exists2 = Get-Command dotnet-gitversion -ErrorAction Ignore
 
 if (!$exists) {
     if ($exists2) {
@@ -40,21 +40,17 @@ $FullSemVer = $($json.FullSemVer)
 $AssemblySemVer = $($json.AssemblySemVer)
 $MajorMinorPatch = $($json.AssemblySemVer)
 
-$AssemblySemFileVer = "2.29.0"
+$AssemblySemFileVer = "3.3.0"
 
 Write-Output "Version: $($AssemblySemFileVer)"
 
-Write-Output
+Write-Output "Build Project $($project)"
 
 & dotnet build "$($project)" --configuration "Release" $($interactive ? '--interactive' : '')
 
 Write-Host "dotnet pack `"$($project)`" --configuration Release -p:Version=$($AssemblySemFileVer) -p:FileVersion=$($AssemblySemFileVer) -p:InformationalVersion=$($AssemblySemFileVer) -p:PackageVersion=$($AssemblySemFileVer) --output `"_publish`" $($interactive ? '--interactive' : '')"
 
 & dotnet pack "$($project)" --no-build --no-restore --configuration "Release" -p:Version="$($AssemblySemFileVer)" -p:FileVersion="$($AssemblySemFileVer)" -p:InformationalVersion="$($AssemblySemFileVer)" -p:PackageVersion="$($AssemblySemFileVer)" --output "_publish" $($interactive ? '--interactive' : '')
-
-if ($AssemblySemFileVer.EndsWith(".0")) {
-    $AssemblySemFileVer = $AssemblySemFileVer.Substring(0, $AssemblySemFileVer.Length - 2)
-}
 
 $packageName = "$($name).$($AssemblySemFileVer).nupkg"
 $pushCommand = "dotnet nuget push ./_publish/$($packageName) --source $source --timeout 900 --api-key ""Cli\"""
@@ -68,4 +64,4 @@ Write-Output $pushCommand
 Invoke-Expression $pushCommand
 
 Write-Output "Successfully published Nuget package. Add to your project with:"
-Write-Output "dotnet add package $($packageName) --version $($AssemblySemFileVer)"
+Write-Output "dotnet add package $($name) --version $($AssemblySemFileVer)"
